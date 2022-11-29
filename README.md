@@ -228,17 +228,16 @@ where CUS_NAME like 'A%' or cus_name like '%A';
  delimiter $$
 create procedure Rating_Procedure()
 begin
-select sp.supp_id, s.supp_name, Avg_rating,
+select supp_id, supp_name,Avg_Rating, 
 case when Avg_rating=5 then'Excellent Service'
-when Avg_rating > 4 then 'Good Service'
-when Avg_rating > 2 then'Average Service'
+when Avg_rating>4 then 'Good Service'
+when Avg_rating>2 then'Average Service'
 else 'Poor Service'
 End as Type_Of_Service from (select sp.supp_id, s.supp_name, avg(r.rat_ratstars) as Avg_rating
-from rating as r, ecommerce.order as o,supplier_pricing as sp where r.ORD_ID=o.ORD_ID 
-and sp.PRICING_ID=o.PRICING_ID and s.SUPP_ID=sp.SUPP_ID group by sp.supp_id) as T1;
+from rating as r, ecommerce.order as o,
+supplier_pricing as sp, supplier as s where r.ORD_ID=o.ORD_ID and sp.PRICING_ID=o.PRICING_ID 
+and s.supp_id=sp.SUPP_ID group by sp.supp_id) as T1;
 end $$
 delimiter ;
 
 call Rating_Procedure();
- 
-
