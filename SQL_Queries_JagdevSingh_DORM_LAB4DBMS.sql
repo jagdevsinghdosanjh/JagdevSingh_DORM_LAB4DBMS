@@ -53,7 +53,8 @@ where ORD_DATE > '2021-10-05';
 select CUS_NAME, CUS_GENDER from ecommerce.customer 
 where CUS_NAME like 'A%' or cus_name like '%A';
 
--- Question No 9.	Create a stored procedure to display supplier id, name, rating and Type_of_Service. For Type_of_Service, If rating =5, print “Excellent Service”,If rating >4 print “Good Service”, If rating >2 print “Average Service” else print “Poor Service”.
+-- Question No 9.	Create a stored procedure to display supplier id, name, rating and Type_of_Service. For Type_of_Service, If rating =5, print “Excellent Service”,
+If rating >4 print “Good Service”, If rating >2 print “Average Service” else print “Poor Service”.
 -- Solved Query
  delimiter $$
 create procedure Rating_Procedure()
